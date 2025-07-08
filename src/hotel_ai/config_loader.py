@@ -30,7 +30,7 @@ tasks = {
     name: Task(
         description=cfg["description"],
         expected_output=cfg["expected_output"],
-        agent=agents[name.split("_task")[0]],
+        agent=agents[cfg["agent"]],
     )
     for name, cfg in task_data.items()
 }
