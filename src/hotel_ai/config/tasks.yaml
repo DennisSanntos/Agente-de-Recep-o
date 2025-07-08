@@ -12,8 +12,14 @@ dispatch_task:
   agent: dispatcher
   description: >
     Registre a solicitação do cliente na base de dados Baserow usando os dados classificados anteriormente.
+    Retorne os mesmos dados recebidos com um campo adicional "status" contendo o resultado da tentativa de registro.
   expected_output: >
-    Uma string confirmando que a solicitação foi registrada com sucesso, ou um erro detalhado.
+    Um JSON contendo as chaves:
+      - "mensagem": a mensagem original do cliente,
+      - "nivel": o nível de complexidade,
+      - "departamento": o departamento identificado,
+      - "status": uma string com o resultado do registro (ex: "✅ Solicitação registrada com sucesso no Baserow.")
+
 
 respond_client_task:
   agent: response_agent
