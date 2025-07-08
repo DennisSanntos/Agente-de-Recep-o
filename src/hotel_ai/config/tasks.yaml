@@ -5,7 +5,13 @@ classify_message_task:
     Mensagem:
     {mensagem_cliente}
   expected_output: >
-    Um JSON com "nivel" e "departamento"
+  Um JSON com as chaves obrigatórias: "nivel", "departamento", "mensagem".
+  Exemplo:
+  {
+    "nivel": "baixo",
+    "departamento": "Atendimento ao Cliente",
+    "mensagem": "{mensagem_cliente}"
+  }
 
 dispatch_task:
   agent: dispatcher
