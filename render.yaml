@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "python src/hotel_ai/webhook_server.py"
+    startCommand: "PYTHONPATH=src python src/hotel_ai/main.py"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.8
