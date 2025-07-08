@@ -15,9 +15,16 @@ def registrar_baserow(data: dict) -> str:
 
     Todos os campos são obrigatórios, exceto 'nome'.
     """
+
+    # 🔒 Validação básica do payload antes de fazer o request
+    required_fields = ["mensagem", "nivel", "departamento"]
+    for field in required_fields:
+        if field not in data:
+            return f"❌ Campo obrigatório ausente: {field}"
+
     token = os.getenv("BASEROW_API_TOKEN")
     if not token:
-        return "Erro: variável de ambiente BASEROW_API_TOKEN não definida."
+        return "❌ Erro: variável de ambiente BASEROW_API_TOKEN não definida."
 
     url = "https://api.baserow.io/api/database/rows/table/599992/?user_field_names=false"
 
@@ -34,9 +41,12 @@ def registrar_baserow(data: dict) -> str:
         "Content-Type": "application/json"
     }
 
-    response = requests.post(url, json=payload, headers=headers)
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        if response.status_code == 200:
+            return "✅ Solicitação registrada com sucesso no Baserow."
+        else:
+            return f"❌ Erro ao registrar no Baserow ({response.status_code}): {response.text}"
+    except Exception as e:
+        return f"❌ Erro na requisição ao Baserow: {str(e)}"
 
-    if response.status_code == 200:
-        return "✅ Solicitação registrada com sucesso no Baserow."
-    else:
-        return f"❌ Erro ao registrar no Baserow: {response.text}"
