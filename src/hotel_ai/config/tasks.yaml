@@ -1,27 +1,27 @@
 classify_message_task:
-  agent: message_classifier
   description: >
     Analise a mensagem recebida do cliente e classifique seu nível de resolução e departamento ideal.
-    Mensagem:
+    Inclua também a própria mensagem original como campo "mensagem".
+    
+    Mensagem recebida:
     {mensagem_cliente}
   expected_output: >
-  Um JSON com as chaves obrigatórias: "nivel", "departamento", "mensagem".
-  Exemplo:
-  {
-    "nivel": "baixo",
-    "departamento": "Atendimento ao Cliente",
-    "mensagem": "{mensagem_cliente}"
-  }
+    Um JSON com as chaves obrigatórias: "nivel", "departamento", "mensagem".
+    Exemplo:
+    {
+      "nivel": "baixo",
+      "departamento": "Atendimento",
+      "mensagem": "{mensagem_cliente}"
+    }
 
 dispatch_task:
-  agent: dispatcher
   description: >
-    Registre a solicitação no Baserow usando os dados classificados.
+    Registre a solicitação no Baserow usando os dados classificados. 
+    Use os campos: mensagem, nivel, departamento.
   expected_output: >
     Confirmação de que a solicitação foi registrada corretamente.
 
 respond_client_task:
-  agent: response_agent
   description: >
     Gere uma resposta cordial ao cliente explicando que a solicitação foi encaminhada ao setor correto.
   expected_output: >
