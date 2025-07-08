@@ -8,9 +8,4 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.8
-      - key: TELEGRAM_BOT_TOKEN
-        value: seu_bot_token
-      - key: BASEROW_API_TOKEN
-        value: seu_baserow_token
-      - key: OPENAI_API_KEY
-        value: sua_openai_key
+      
