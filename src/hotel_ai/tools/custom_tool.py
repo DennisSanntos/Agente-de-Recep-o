@@ -6,6 +6,14 @@ import os
 def registrar_baserow(data: dict) -> str:
     """
     Registra uma nova solicitação na tabela do Baserow (ID: 599992).
+
+    Espera um dicionário com os seguintes campos:
+      - mensagem (str): texto da solicitação do cliente
+      - nivel (str): grau de complexidade
+      - departamento (str): área responsável
+      - nome (str, opcional): nome do cliente (opcional)
+
+    Todos os campos são obrigatórios, exceto 'nome'.
     """
     token = os.getenv("BASEROW_API_TOKEN")
     if not token:
