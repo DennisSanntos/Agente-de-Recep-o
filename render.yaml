@@ -1,11 +1,16 @@
 services:
   - type: web
     name: hotel-ai-webhook
-    runtime: python
+    env: python
+    plan: free
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python src/hotel_ai/webhook_server.py"
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
       - key: TELEGRAM_BOT_TOKEN
         value: seu_bot_token
       - key: BASEROW_API_TOKEN
-        value: seu_token
+        value: seu_baserow_token
+      - key: OPENAI_API_KEY
+        value: sua_openai_key
