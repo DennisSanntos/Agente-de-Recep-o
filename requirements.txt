@@ -1,6 +1,7 @@
 crewai>=0.134.0
-crewai-tools>=0.1.0
-openai>=1.0.0
+crewai-tools==0.46.1
+embedchain==0.1.117
 flask==2.3.3
 requests>=2.31.0
+openai>=1.0.0
 python-dotenv>=1.0.0
