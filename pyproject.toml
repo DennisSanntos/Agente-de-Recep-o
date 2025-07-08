@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "hotel-ai"
+version = "0.1.0"
+description = "Agente de recepção com CrewAI"
+authors = ["Seu Nome <seu@email.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+crewai = "^0.20.0"
+crewai-tools = "^0.1.0"
+requests = "*"
+python-dotenv = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
