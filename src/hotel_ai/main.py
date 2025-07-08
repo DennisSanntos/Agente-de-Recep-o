@@ -1,4 +1,4 @@
-from .crew import crew
+from hotel_ai.crew import crew
 
 if __name__ == "__main__":
     while True:
