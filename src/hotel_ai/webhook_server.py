@@ -23,6 +23,6 @@ def telegram_webhook():
     result = crew.kickoff(inputs={"mensagem_cliente": text})
 
     # Envia resposta gerada ao cliente
-    send_message(chat_id, result.final_output)
+    send_message(chat_id, result.output)
 
     return "OK", 200
