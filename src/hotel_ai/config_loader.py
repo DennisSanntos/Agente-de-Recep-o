@@ -9,8 +9,11 @@ def load_yaml(path):
     with open(path, 'r') as file:
         return yaml.safe_load(file)
 
-agent_data = load_yaml(Path(__file__).parent / "agents.yaml")
-task_data = load_yaml(Path(__file__).parent / "tasks.yaml")
+# Corrigindo o caminho dos arquivos YAML
+CONFIG_DIR = Path(__file__).parent / "config"
+
+agent_data = load_yaml(CONFIG_DIR / "agents.yaml")
+task_data = load_yaml(CONFIG_DIR / "tasks.yaml")
 
 agents = {
     name: Agent(
