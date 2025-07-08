@@ -1,9 +1,11 @@
 from flask import Flask, request
+from flask_cors import CORS  # 🔥 Importa o CORS
 from src.hotel_ai.crew import crew
 from src.hotel_ai.telegram_bot import send_message
 import os
 
 app = Flask(__name__)
+CORS(app)  # 🔥 Ativa o CORS para todas as rotas
 
 @app.route("/webhook", methods=["POST"])
 def telegram_webhook():
