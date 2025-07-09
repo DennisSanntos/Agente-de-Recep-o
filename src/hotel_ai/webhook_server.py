@@ -35,7 +35,7 @@ def telegram_webhook():
         result = crew.kickoff(inputs={"mensagem_cliente": text})
 
         # Envia resposta gerada ao cliente
-        send_message(chat_id, result.output)
+        send_message(chat_id, result.final_output)
         return "OK", 200
 
     except Exception as e:
