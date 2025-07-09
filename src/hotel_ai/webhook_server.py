@@ -34,10 +34,14 @@ def telegram_webhook():
         # Executa CrewAI com a mensagem recebida
         result = crew.kickoff(inputs={"mensagem_cliente": text})
 
-        # Envia resposta gerada ao cliente
-        send_message(chat_id, result)
+        # ✅ Acessa apenas a saída do resultado
+        resposta = result.output if hasattr(result, "output") else str(result)
+
+        # Envia resposta ao cliente
+        send_message(chat_id, resposta)
         return "OK", 200
 
     except Exception as e:
         print(f"❌ Erro no processamento: {e}")
         return "Erro interno", 500
+
