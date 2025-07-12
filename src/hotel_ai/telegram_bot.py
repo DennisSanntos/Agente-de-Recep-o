@@ -11,10 +11,9 @@ def send_message(chat_id, text):
         "text": text,
         "parse_mode": "Markdown"
     }
-
-    response = requests.post(url, json=payload)
     print(f"📨 Enviando mensagem para Telegram (chat_id={chat_id})")
     print(f"➡️ Payload: {payload}")
+    response = requests.post(url, json=payload)
     print(f"📬 Telegram resposta: {response.status_code} - {response.text}")
-
     return response.ok
+
