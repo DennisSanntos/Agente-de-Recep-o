@@ -34,13 +34,22 @@ def download_voice_file(file_id):
 
 # 🎙️ Transcreve o áudio usando OpenAI Whisper API
 def transcribe_audio(audio_bytes):
-    audio_file = ("audio.ogg", audio_bytes)
-    response = openai.Audio.transcribe(
+    from openai import OpenAI
+
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+    import io
+    audio_stream = io.BytesIO(audio_bytes)
+    audio_stream.name = "audio.ogg"  # necessário para simular um arquivo real
+
+    transcript = client.audio.transcriptions.create(
         model=WHISPER_MODEL,
-        file=audio_file,
+        file=audio_stream,
         response_format="text"
     )
-    return response.strip()
+
+    return transcript.strip()
+
 
 # 🚀 Processa o buffer quando o tempo expira
 def process_buffer(chat_id):
