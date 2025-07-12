@@ -63,17 +63,25 @@ def process_buffer(chat_id):
     try:
         result = crew.kickoff(inputs={"mensagem_cliente": full_message})
         
-        # ✅ Usa 'result.output' (v0.13.4)
+        # ✅ Versão correta: CrewOutput usa `.output`
         response_text = result.output
+        print(f"📤 Resposta gerada pela Crew: {response_text}")
 
-        send_message(chat_id, response_text)
+        # ✅ Tenta enviar ao Telegram
+        telegram_response = send_message(chat_id, response_text)
+
+        # 🔍 Verifica se deu certo
+        if telegram_response.status_code != 200:
+            print(f"❌ Erro ao enviar ao Telegram: {telegram_response.status_code} - {telegram_response.text}")
+
     except Exception as e:
         print(f"❌ Erro ao processar buffer: {e}")
         send_message(chat_id, "Ocorreu um erro ao processar sua solicitação.")
 
-    # Limpa buffers
+    # 🧹 Limpa buffers sempre no final
     message_buffer.pop(chat_id, None)
     buffer_timers.pop(chat_id, None)
+
 
 
 @app.route("/webhook", methods=["POST"])
