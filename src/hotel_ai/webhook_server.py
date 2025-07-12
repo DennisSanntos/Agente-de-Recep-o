@@ -64,7 +64,7 @@ def process_buffer(chat_id):
         result = crew.kickoff(inputs={"mensagem_cliente": full_message})
         
         # ✅ Versão correta: CrewOutput usa `.output`
-        response_text = result.output
+        response_text = result.final_output
         print(f"📤 Resposta gerada pela Crew: {response_text}")
 
         # ✅ Tenta enviar ao Telegram
