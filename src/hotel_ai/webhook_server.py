@@ -63,8 +63,10 @@ def process_buffer(chat_id):
     try:
         result = crew.kickoff(inputs={"mensagem_cliente": full_message})
 
-        # ✅ Pega apenas a saída final do último agente
-        response_text = result.responses[-1]['output'] if result.responses else str(result)
+        # ✅ Pega a resposta final da crew
+        response_text = result.final_output if hasattr(result, "final_output") else str(result)
+
+        print(f"📨 Resposta final do agente: {response_text}")
 
         success = send_message(chat_id, response_text)
         if not success:
