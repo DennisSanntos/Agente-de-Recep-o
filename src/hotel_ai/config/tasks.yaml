@@ -1,12 +1,36 @@
 classify_message_task:
   agent: message_classifier
   description: >
-    Analise a mensagem recebida do cliente e classifique seu nível de resolução e o departamento ideal.
-    Retorne também a própria mensagem original.
+    Você é responsável por classificar mensagens enviadas por hóspedes de um hotel.
+
+    Analise cuidadosamente o conteúdo da mensagem recebida e:
+
+    1. Identifique o **departamento ideal** para resolver a solicitação.
+       Escolha **apenas um dos seguintes**:
+       - Recepção
+       - Concierge
+       - Manutenção
+       - Governança
+       - Salão
+       - Cozinha
+
+    2. Classifique a **complexidade da solicitação** como:
+       - Fácil (pode ser resolvida rapidamente e sem esforço técnico)
+       - Médio (requer alguma coordenação ou verificação)
+       - Difícil (envolve múltiplos setores, esforço técnico ou tempo prolongado)
+
+    3. Retorne também a **mensagem original** enviada pelo cliente.
+
+    Considere o **contexto e teor** da mensagem. Evite suposições ou respostas genéricas. Seja objetivo e preciso na análise.
+
     Mensagem:
     {mensagem_cliente}
   expected_output: >
-    Um JSON com as chaves "mensagem", "nivel" e "departamento".
+    Um JSON com as seguintes chaves:
+      - "mensagem": a mensagem original do cliente,
+      - "nivel": o nível de complexidade (Fácil, Médio ou Difícil),
+      - "departamento": o departamento mais adequado (entre: Recepção, Concierge, Manutenção, Governança, Salão, Cozinha)
+
 
 dispatch_task:
   agent: dispatcher
